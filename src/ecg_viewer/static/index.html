@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EKG Viewer</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>Elektrokardiogramm</h1>
+    <nav class="tabs">
+      <a href="/index.html" class="tab active">Einzelansicht</a>
+      <a href="/compare.html" class="tab">Vergleich</a>
+    </nav>
+    <div class="actions">
+      <button id="refreshBtn" class="btn-ghost" title="Neu einlesen">↻</button>
+    </div>
+  </header>
+
+  <main>
+    <aside class="sidebar">
+      <h2>Aufzeichnungen</h2>
+      <div class="filter">
+        <label>Von <input type="date" id="filterFrom" /></label>
+        <label>Bis <input type="date" id="filterTo" /></label>
+        <button id="filterClear" class="btn-ghost small">Reset</button>
+      </div>
+      <ul id="ecgList" class="ecg-list"></ul>
+    </aside>
+
+    <section class="viewer">
+      <div id="meta" class="meta"></div>
+      <div class="canvas-wrap">
+        <canvas id="ecgCanvas"></canvas>
+      </div>
+      <footer class="scale-note">Ableitung I · 25 mm/s · 10 mm/mV</footer>
+    </section>
+
+    <aside class="export">
+      <h2>PDF-Export</h2>
+      <div class="radio-group">
+        <label><input type="radio" name="mode" value="single" checked /> Aktuelle Aufzeichnung</label>
+        <label><input type="radio" name="mode" value="range" /> Zeitraum</label>
+        <label><input type="radio" name="mode" value="all" /> Alle</label>
+      </div>
+      <div id="rangeInputs" class="range-inputs hidden">
+        <label>Von <input type="date" id="exportFrom" /></label>
+        <label>Bis <input type="date" id="exportTo" /></label>
+      </div>
+      <button id="exportBtn" class="btn-primary">PDF exportieren</button>
+    </aside>
+  </main>
+
+  <script src="/app.js?v=2"></script>
+</body>
+</html>

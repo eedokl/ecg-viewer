@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EKG Vergleich</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <h1>Elektrokardiogramm</h1>
+    <nav class="tabs">
+      <a href="/index.html" class="tab">Einzelansicht</a>
+      <a href="/compare.html" class="tab active">Vergleich</a>
+    </nav>
+    <div class="actions">
+      <button id="refreshBtn" class="btn-ghost" title="Neu einlesen">↻</button>
+    </div>
+  </header>
+
+  <main class="compare-main">
+    <aside class="compare-sidebar">
+      <h2>EKGs</h2>
+      <ul id="ecgToggleList" class="toggle-list"></ul>
+    </aside>
+
+    <section id="stack" class="compare-stack">
+      <div id="emptyHint" class="empty-hint">
+        Wähle links eine oder mehrere Aufzeichnungen aus, um sie hier zu vergleichen.
+      </div>
+    </section>
+  </main>
+
+  <script src="/compare.js?v=5"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+[project]
+name = "ecg-viewer"
+version = "0.1.0"
+description = "Apple Health ECG viewer with iPhone-style display and PDF export"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "Oliver Klein", email = "oliver.klein@arcor.de" }]
+readme = "README.md"
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Framework :: FastAPI",
+]
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "reportlab>=4.2",
+    "pydantic>=2.9",
+    "pyarrow>=17.0",
+]
+
+[project.scripts]
+ecg-viewer = "ecg_viewer.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ecg_viewer"]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pydoclint>=0.8.3",
+    "ruff>=0.15.11",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812",   # conflicts with ruff formatter
+    "D203",     # conflicts with D211
+    "D213",     # conflicts with D212
+    "RUF001",   # allow medical/Unicode punctuation in strings (µV, en-dashes)
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"src/ecg_viewer/__main__.py" = ["T201"]  # print() is fine in a CLI entrypoint
+
+[tool.pydoclint]
+style = "google"
+arg-type-hints-in-docstring = false
+check-return-types = false
+check-yield-types = false
+allow-init-docstring = true
+skip-checking-short-docstrings = true
