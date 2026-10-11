@@ -9,7 +9,7 @@ Apple Health ECG viewer with an iPhone-style display and printable PDF export fo
 ## Setup
 
 ```powershell
-cd C:\Users\Oliver-2018\Desktop\Claude\ecg-viewer
+cd ecg-viewer
 uv sync
 .venv\scripts\activate
 ```
@@ -25,14 +25,14 @@ Options:
 ```powershell
 uv run ecg-viewer --host 0.0.0.0 --port 8080 --reload
 uv run ecg-viewer --refresh-only           # rebuild index & Parquet cache
-uv run ecg-viewer --data-dir "D:\some\other\electrocardiograms"
+uv run ecg-viewer --data-dir electrocardiograms
 ```
 
 ## Data
 
 By default the app reads from:
 ```
-C:\Users\Oliver-2018\Desktop\Claude\apple_health_export\electrocardiograms
+$HOME\Desktop\Claude\apple_health_export\electrocardiograms
 ```
 
 Override with `ECG_DATA_DIR` (env var) or `--data-dir`.
